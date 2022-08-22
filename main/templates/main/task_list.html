@@ -19,7 +19,7 @@
     <h1>My To do list</h1>
     <a href="{% url 'task-create' %}">Add a new Task</a>
     <form method="GET" action="">
-        <input type="text" name="search-field" placeholder="Search for a Task" id="">
+        <input type="text" name="search-field" value="{{search_input}}">
         <input type="submit" value="Search">
     </form>
     <table>
