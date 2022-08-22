@@ -11,7 +11,7 @@ class Task(models.Model):
     created_time_and_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.title}, created on {self.created_time_and_date}"
+        return self.title
 
     class Meta:
         ordering = ['complete']
