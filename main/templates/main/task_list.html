@@ -11,33 +11,34 @@
             {% else %}
             <a href="{% url 'login' %}">Login</a>
         {% endif %}
+        
     </div>
         
-            <hr>
-            <h1>My To do list</h1>
-            <a href="{% url 'task-create' %}">Add a new Task</a>
+            <!-- <a href="{% url 'task-create' %}">Add a new Task</a>
             <form method="GET" action="">
                 <input type="text" name="search-field" value="{{search_input}}">
                 <input type="submit" value="Search">
-            </form>
-            <table>
-                <tr>
-                    <th>Item</th>
-                    <th></th>
-                    <th></th>
-
-                </tr>
+            </form> -->
+            <div class="task-items-wrapper">
                 {% for task in object_list %}
-                <tr>
-                    <td>{{task.title}}</td>
-                    <td><a href="{% url 'task-update' task.id %}">Update Task</a></td>
-                    <td><a href="{% url 'task-delete' task.id %}">Delete Task</a></td>
+                    <div class="task-wrapper">
+                        {% if task.complete %}
+                            <div class="task-title">
+                                <div class="task-complete-icon"></div>
+                                <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i>
+                            </div>
+                            <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+                        {% else %}
+                        <div class="task-title">
+                            <div class="task-incomplete-icon"></div>
+                            <a href="{% url 'task-update' task.id %}">{{task}}</a>
+                        </div>
+                            <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+                        {% endif %}
+                    </div>
 
-                </tr>
                 {% empty %}
                 <h3>No items in list!</h3>
                 {% endfor %}
-
-            </table>
-
+            </div>
     {% endblock content %}
