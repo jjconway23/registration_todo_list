@@ -22,6 +22,12 @@ class CustomLoginView(LoginView):
 class TaskList(LoginRequiredMixin, ListView):
     model = Task
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = context['object_list'].filter(user=self.request.user)
+        context['count'] = context['object_list'].filter(complete=False).count()
+        return context 
+
 
 class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
