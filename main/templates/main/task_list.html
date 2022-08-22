@@ -10,13 +10,16 @@
 
 <body>
     <h1>My To do list</h1>
+    <a href="{% url 'task-create' %}">Add a new Task</a>
     <table>
         <tr>
             <th>Item</th>
+            <th></th>
         </tr>
         {% for task in object_list %}
         <tr>
             <td>{{task.title}}</td>
+            <td><a href="{% url 'task' task.id %}">View here</a></td>
         </tr>
         {% empty %}
         <h3>No items in list!</h3>
